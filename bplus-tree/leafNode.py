@@ -30,18 +30,17 @@ class leafNode:
         return ok
 
     def split(self):
-        left = self.keys[: MAX // 2]
-        right = self.keys[MAX // 2 :]
-        self.keys = left
-        self.cnt = len(left) - 1
+        left_keys = self.keys[: MAX // 2]
+        right_keys = self.keys[MAX // 2 :]
+        self.keys = left_keys
+        self.set()
 
-        brother = leafNode()
-        brother.keys += right
-        brother.cnt = len(right)
-        brother.set()
+        right = leafNode()
+        right.keys += right_keys
+        right.set()
 
-        self.brother = brother
-        self.parent.add(brother)
+        self.brother = right
+        self.parent.add(right)
 
         return
 

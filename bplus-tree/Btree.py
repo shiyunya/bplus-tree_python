@@ -23,21 +23,23 @@ class Btree:
         now.add(key)
 
     def print(self):
-        q = deque([self.root])
         print("-" * MAX, "B+tree", "-" * MAX)
-        now = q.popleft()
-        print("ROOT:", now.keys)
+
+        q = deque([(self.root, 0)])
+        now, level = q.popleft()
+        print("LEVEL", level, "ROOT :", now.keys)
         for i in range(now.cnt):
-            q.append(now.children[i])
+            q.append((now.children[i], level + 1))
+
         while q:
-            now = q.popleft()
+            now, level = q.popleft()
+            node_type = "LEAF" if now.isLeaf else "INNER"
+            print("LEVEL", level, node_type + " :", now.keys)
+
             if now.isLeaf:
-                print("LEAF:", now.keys)
                 continue
-            else:
-                print("INNER:", now.keys)
             for i in range(now.cnt):
-                q.append(now.children[i])
+                q.append((now.children[i], level + 1))
 
 
 def main():

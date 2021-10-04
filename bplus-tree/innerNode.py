@@ -8,9 +8,6 @@ class innerNode:
     def __init__(self, parent=None):
         self.isLeaf = False
         self.parent = parent
-        # self.children = [None] * MAX
-        # self.thresholds = [float("inf")] * MAX
-        # self.thresholds[0] = -float("inf")
         self.children = []
         self.keys = []
         self.cnt = 0
