@@ -3,10 +3,11 @@
 ## 概要
 Pythonでの自分なりのB+tree.
 
-現状：insert, split, predecessor，range queryは対応  
-予定：upsert, delete
-(マージはしない予定．)
+現状：upsert, split, delete, predecessor，range queryは対応  
+(マージはしない予定)
 
+これを用いて[AtCoderの平衡二分木に相当するものが必要な問題](https://atcoder.jp/contests/abc217/tasks/abc217_d)は解けた．  
+[提出コード](https://atcoder.jp/contests/abc217/submissions/26388422)（successorは追加実装）
 ## 必要条件
 
 ### pyenv/pipenvの準備
