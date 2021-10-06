@@ -1,42 +1,34 @@
 import constants
+import Node
 import bisect
 
 MAX = constants.MAX
 
 
-class leafNode:
+class leafNode(Node.Node):
     def __init__(self, parent=None, brother=None, key=-float("inf")):
+        super().__init__(parent=parent, brother=brother, key=key)
         self.isLeaf = True
-        self.parent = parent
-        self.keys = []  # [-float("inf")]
-        self.brother = brother
-        self.cnt = 0
-        self.first = key
+        self.values = []
 
     def set(self):
         self.first = self.keys[0]
         self.cnt = len(self.keys)
 
-    def search(self, key):
-        ok = 0
-        ng = self.cnt
-        while ng - ok > 1:
-            mid = (ok + ng) // 2
-            if self.keys[mid] <= key:
-                ok = mid
-            else:
-                ng = mid
-
-        return ok
-
     def split(self):
-        left_keys = self.keys[: MAX // 2]
-        right_keys = self.keys[MAX // 2 :]
+        half = MAX // 2
+        left_keys = self.keys[:half]
+        right_keys = self.keys[half:]
+        left_values = self.values[:half]
+        right_values = self.values[half:]
+
         self.keys = left_keys
+        self.values = left_values
         self.set()
 
         right = leafNode()
-        right.keys += right_keys
+        right.keys = right_keys
+        right.values = right_values
         right.set()
 
         self.brother = right
@@ -44,14 +36,20 @@ class leafNode:
 
         return
 
-    def add(self, key):
+    def add(self, key, value=None):
         if self.cnt == MAX:
             self.split()
             if self.brother.first <= key:
-                self.brother.add(key)
+                self.brother.add(key, value)
             else:
-                self.add(key)
+                self.add(key, value)
         else:
-            bisect.insort_left(self.keys, key)
+            idx = bisect.bisect_left(self.keys, key)
+            self.keys.insert(idx, key)
+            self.values.insert(idx, value)
             self.set()
         return
+
+    def predecessor(self, key):
+        idx = self.search(key)
+        return (self.keys[idx], self.values[idx])

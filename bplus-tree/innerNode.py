@@ -1,17 +1,14 @@
 import constants
+import Node
 import bisect
 
 MAX = constants.MAX
 
 
-class innerNode:
+class innerNode(Node.Node):
     def __init__(self, parent=None):
-        self.isLeaf = False
-        self.parent = parent
+        super().__init__(parent=parent)
         self.children = []
-        self.keys = []
-        self.cnt = 0
-        self.first = 0
 
     def set(self):
         self.first = self.keys[0]

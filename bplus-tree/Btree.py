@@ -15,12 +15,20 @@ class Btree:
         leaf.parent = root
         self.root.add(leaf)
 
-    def add(self, key):
+    def getLeaf(self, key):
         now = self.root
         while not now.isLeaf:
             idx = now.search(key)
             now = now.children[idx]
-        now.add(key)
+        return now
+
+    def add(self, key, value=None):
+        now = self.getLeaf(key)
+        now.add(key, value)
+
+    def predecessor(self, key):
+        now = self.getLeaf(key)
+        return now.predecessor(key)
 
     def print(self):
         print("-" * MAX, "B+tree", "-" * MAX)
@@ -49,6 +57,10 @@ def main():
         bt.add(randint(0, 10000))
 
     bt.print()
+
+    for i in range(10):
+        key = randint(0, 10000)
+        print(key, bt.predecessor(key))
     return
 
 
