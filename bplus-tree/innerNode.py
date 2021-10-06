@@ -14,20 +14,6 @@ class innerNode(Node.Node):
         self.first = self.keys[0]
         self.cnt = len(self.children)
 
-    # search the greatest number which is less than key
-    def search(self, key):
-        ok = 0
-        ng = self.cnt
-
-        while ng - ok > 1:
-            mid = (ok + ng) // 2
-            if self.keys[mid] <= key:
-                ok = mid
-            else:
-                ng = mid
-
-        return ok
-
     def split(self):
         half = self.cnt // 2
 

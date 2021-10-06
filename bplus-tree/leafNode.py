@@ -26,7 +26,7 @@ class leafNode(Node.Node):
         self.values = left_values
         self.set()
 
-        right = leafNode()
+        right = leafNode(brother=self.brother)
         right.keys = right_keys
         right.values = right_values
         right.set()

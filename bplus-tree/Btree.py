@@ -30,6 +30,28 @@ class Btree:
         now = self.getLeaf(key)
         return now.predecessor(key)
 
+    def range(self, first, end):
+        now = self.getLeaf(first)
+        ans = []
+
+        while now.first <= end:
+            for i in range(now.cnt):
+                if now.keys[i] < first:
+                    continue
+                if now.keys[i] <= end:
+                    ans.append((now.keys[i], now.values[i]))
+                else:
+                    break
+            else:
+                if now.brother is not None:
+                    now = now.brother
+                    continue
+                else:
+                    break
+            break
+
+        return ans
+
     def print(self):
         print("-" * MAX, "B+tree", "-" * MAX)
 
@@ -54,13 +76,24 @@ def main():
     bt = Btree()
 
     for i in range(1000):
-        bt.add(randint(0, 10000))
+        key = randint(0, 10000)
+        value = randint(0, 10000)
+        bt.add(key, value)
 
     bt.print()
 
     for i in range(10):
         key = randint(0, 10000)
         print(key, bt.predecessor(key))
+
+    for i in range(10):
+        key = randint(0, 10000)
+        first = max(0, key - 500)
+        end = min(10000, key + 500)
+        ans = bt.range(first, end)
+        print(first, end, ans)
+        print()
+
     return
 
 
