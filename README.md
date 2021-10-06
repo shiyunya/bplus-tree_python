@@ -3,9 +3,9 @@
 ## 概要
 Pythonでの自分なりのB+tree.
 
-現状：データ追加，スプリットは対応  
-予定：kye-value store，upsert ，point(predecessor?)，range query  
-デリート，マージはサポートしない予定．
+現状：insert, split, predecessor，range queryは対応  
+予定：upsert, delete
+マージはしない予定．
 
 ## 必要条件
 

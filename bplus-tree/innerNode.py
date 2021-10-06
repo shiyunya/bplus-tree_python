@@ -10,10 +10,6 @@ class innerNode(Node.Node):
         super().__init__(parent=parent)
         self.children = []
 
-    def set(self):
-        self.first = self.keys[0]
-        self.cnt = len(self.children)
-
     def split(self):
         half = self.cnt // 2
 
@@ -32,28 +28,28 @@ class innerNode(Node.Node):
             left = innerNode()
             left.children = left_chidlren
             left.keys = left_keys
-            left.set()
+            left.update()
             for child in left.children:
                 child.parent = left
 
             right.children = right_chidlren
             right.keys = right_keys
-            right.set()
+            right.update()
             for child in right.children:
                 child.parent = right
 
             self.add(left)
             self.add(right)
-            self.set()
+            self.update()
 
         else:
             self.keys = left_keys
             self.children = left_chidlren
-            self.set()
+            self.update()
 
             right.keys = right_keys
             right.children = right_chidlren
-            right.set()
+            right.update()
             for child in right.children:
                 child.parent = right
             self.parent.add(right)
@@ -75,7 +71,7 @@ class innerNode(Node.Node):
             idx = bisect.bisect_left(self.keys, key)
             self.keys.insert(idx, key)
             self.children.insert(idx, child)
-            self.set()
+            self.update()
             child.parent = self
 
         return

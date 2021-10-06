@@ -12,7 +12,7 @@ class Node:
         self.cnt = 0
         self.first = key
 
-    def set(self):
+    def update(self):
         self.first = self.keys[0]
         self.cnt = len(self.keys)
 

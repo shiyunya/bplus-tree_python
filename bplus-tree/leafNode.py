@@ -11,10 +11,6 @@ class leafNode(Node.Node):
         self.isLeaf = True
         self.values = []
 
-    def set(self):
-        self.first = self.keys[0]
-        self.cnt = len(self.keys)
-
     def split(self):
         half = MAX // 2
         left_keys = self.keys[:half]
@@ -24,12 +20,12 @@ class leafNode(Node.Node):
 
         self.keys = left_keys
         self.values = left_values
-        self.set()
+        self.update()
 
         right = leafNode(brother=self.brother)
         right.keys = right_keys
         right.values = right_values
-        right.set()
+        right.update()
 
         self.brother = right
         self.parent.add(right)
@@ -47,7 +43,7 @@ class leafNode(Node.Node):
             idx = bisect.bisect_left(self.keys, key)
             self.keys.insert(idx, key)
             self.values.insert(idx, value)
-            self.set()
+            self.update()
         return
 
     def predecessor(self, key):
