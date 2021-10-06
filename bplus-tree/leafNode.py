@@ -32,7 +32,7 @@ class leafNode(Node.Node):
 
         return
 
-    def add(self, key, value=None):
+    def add(self, key, value=None, idx=-1):
         if self.cnt == MAX:
             self.split()
             if self.brother.first <= key:
@@ -40,11 +40,28 @@ class leafNode(Node.Node):
             else:
                 self.add(key, value)
         else:
-            idx = bisect.bisect_left(self.keys, key)
+            if idx < 0:
+                idx = bisect.bisect_left(self.keys, key)
             self.keys.insert(idx, key)
             self.values.insert(idx, value)
             self.update()
         return
+
+    def upsert(self, key, value=None):
+        idx = bisect.bisect_left(self.keys, key)
+
+        if self.cnt > idx and self.keys[idx] == key:
+            self.values[idx] = value
+        else:
+            self.add(key, value, idx)
+
+    def delete(self, key):
+        idx = bisect.bisect_left(self.keys, key)
+
+        if self.cnt > idx and self.keys[idx] == key:
+            self.keys.pop(idx)
+            self.values.pop(idx)
+            self.update()
 
     def predecessor(self, key):
         idx = self.search(key)

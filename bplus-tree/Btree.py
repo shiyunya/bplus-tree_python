@@ -26,6 +26,14 @@ class Btree:
         now = self.getLeaf(key)
         now.add(key, value)
 
+    def upsert(self, key, value=None):
+        now = self.getLeaf(key)
+        now.upsert(key, value)
+
+    def delete(self, key):
+        now = self.getLeaf(key)
+        now.delete(key)
+
     def predecessor(self, key):
         now = self.getLeaf(key)
         return now.predecessor(key)
@@ -78,7 +86,7 @@ def main():
     for i in range(1000):
         key = randint(0, 10000)
         value = randint(0, 10000)
-        bt.add(key, value)
+        bt.upsert(key, value)
 
     bt.print()
 
@@ -91,7 +99,8 @@ def main():
         first = max(0, key - 500)
         end = min(10000, key + 500)
         ans = bt.range(first, end)
-        print(first, end, ans)
+        print("range [", first, ",", end, "]:")
+        print(ans)
         print()
 
     return
