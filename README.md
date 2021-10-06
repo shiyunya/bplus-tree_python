@@ -5,7 +5,7 @@ Pythonでの自分なりのB+tree.
 
 現状：insert, split, predecessor，range queryは対応  
 予定：upsert, delete
-マージはしない予定．
+(マージはしない予定．)
 
 ## 必要条件
 
