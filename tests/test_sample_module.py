@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from btree import sample_module
+from bplustree import sample_module
 
 
 def test_sample_function():
