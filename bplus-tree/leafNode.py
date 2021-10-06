@@ -66,3 +66,12 @@ class leafNode(Node.Node):
     def predecessor(self, key):
         idx = self.search(key)
         return (self.keys[idx], self.values[idx])
+
+    def successor(self, key):
+        idx = self.search(key)
+        if idx == self.cnt - 1:
+            self = self.brother
+            idx = 0
+        else:
+            idx += 1
+        return (self.keys[idx], self.values[idx])

@@ -23,20 +23,24 @@ class Btree:
         return now
 
     def add(self, key, value=None):
-        now = self.getLeaf(key)
-        now.add(key, value)
+        leaf = self.getLeaf(key)
+        leaf.add(key, value)
 
     def upsert(self, key, value=None):
-        now = self.getLeaf(key)
-        now.upsert(key, value)
+        leaf = self.getLeaf(key)
+        leaf.upsert(key, value)
 
     def delete(self, key):
-        now = self.getLeaf(key)
-        now.delete(key)
+        leaf = self.getLeaf(key)
+        leaf.delete(key)
 
     def predecessor(self, key):
-        now = self.getLeaf(key)
-        return now.predecessor(key)
+        leaf = self.getLeaf(key)
+        return leaf.predecessor(key)
+
+    def successor(self, key):
+        leaf = self.getLeaf(key)
+        return leaf.successor(key)
 
     def range(self, first, end):
         now = self.getLeaf(first)
@@ -92,12 +96,18 @@ def main():
 
     for i in range(10):
         key = randint(0, 10000)
-        print(key, bt.predecessor(key))
+        print("predecessor: key", key, ", ans", bt.predecessor(key))
+    print()
 
     for i in range(10):
         key = randint(0, 10000)
-        first = max(0, key - 500)
-        end = min(10000, key + 500)
+        print("successor: key", key, ", ans", bt.successor(key))
+    print()
+
+    for i in range(10):
+        key = randint(0, 10000)
+        first = max(0, key - 50)
+        end = min(10000, key + 50)
         ans = bt.range(first, end)
         print("range [", first, ",", end, "]:")
         print(ans)
