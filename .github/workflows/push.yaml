@@ -2,10 +2,10 @@ name: CI_for_push
 
 on:
   # Trigger the workflow on push,
-  # but only for the master branch
+  # but only for the main branch
   push:
     branches:
-      - master
+      - main
 jobs:
   format_lint_and_tests:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: 'master'
+          ref: 'main'
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
