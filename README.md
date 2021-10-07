@@ -3,11 +3,12 @@
 ## 概要
 Pythonでの自分なりのB+tree.
 
-現状：upsert, split, delete, predecessor, successor, range queryは対応  
+現状：upsert, delete, predecessor, successor, range queryは対応  
 (マージはしない予定)
 
-これを用いて[AtCoderの平衡二分木に相当するものが必要な問題](https://atcoder.jp/contests/abc217/tasks/abc217_d)は解けた．  
+これを用いて[AtCoderの平衡木に相当するものが必要な問題](https://atcoder.jp/contests/abc217/tasks/abc217_d)は解けた．  
 [提出コード](https://atcoder.jp/contests/abc217/submissions/26388422)
+
 ## 必要条件
 
 ### pyenv/pipenvの準備
@@ -69,24 +70,16 @@ pipenv sync
 その他，特別な準備（環境変数の設定など）が必要な場合はそれを記述．
 -->
 
-### 開発
-
-諸々の設定をworkspace settingsとしてリポジトリに含んでいるため，cloneしたディレクトリをVS Codeで開けば，Pythonのpathの解決からテストの検出まで全て自動で行われる．
-
-GitHub Actions用の設定もリポジトリに含んでいるため，`master`ブランチへのpushないしpull requestを行うたびに以下の処理がCIとして回る．
-
-- [black](https://github.com/psf/black)によるコードの整形及び[flake8](https://flake8.pycqa.org/en/latest/)によるコードチェック．
-- `tests`ディレクトリ以下に配置された単体テストの実行．
-
-なお，コード整形及びチェックはローカルでもファイル保存時に実行される．
-
 ### 実行
 
-コマンドラインからプログラムを起動したい場合，ワーキングディレクトリで下記のように実行する．
-
 ```bash
-python -m project_name
+python -m bplustree
 ```
+サンプルファイル
+```bash
+python sample.py
+```
+
 
 ## パッケージとしての利用（pipenv+GitHub経由）
 
