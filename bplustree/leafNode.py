@@ -1,7 +1,9 @@
-import constants
-import Node
+from . import constants
+from . import Node
 import bisect
+import logging
 
+logger = logging.getLogger(__name__)
 MAX = constants.MAX
 
 
@@ -65,13 +67,22 @@ class leafNode(Node.Node):
 
     def predecessor(self, key):
         idx = self.search(key)
+
+        if self.keys[idx] > key:
+            logger.warning("There is no date less than or equal to key.")
+            return (-1, -1)
         return (self.keys[idx], self.values[idx])
 
     def successor(self, key):
         idx = self.search(key)
+
         if idx == self.cnt - 1:
             self = self.brother
             idx = 0
         else:
             idx += 1
+
+        if self is None:
+            logger.warning("There is no date greater than key.")
+            return (-1, -1)
         return (self.keys[idx], self.values[idx])

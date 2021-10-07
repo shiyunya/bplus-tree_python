@@ -1,14 +1,17 @@
-import constants
-import innerNode
-import leafNode
+from . import constants
+from . import innerNode
+from . import leafNode
 from collections import deque
 from random import randint
+import logging
 
+logger = logging.getLogger(__name__)
 MAX = constants.MAX
 
 
 class Btree:
     def __init__(self, key=-float("inf")):
+        logger.debug("run constructor for B+-tree")
         root = innerNode.innerNode()
         self.root = root
         leaf = leafNode.leafNode(key=key)

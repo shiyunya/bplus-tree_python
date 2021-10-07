@@ -1,11 +1,13 @@
 # coding=utf-8
 
 import logging
+from random import randint
 from typing import Final
-
 import click
 
-from . import sample_module
+from . import Btree
+from . import innerNode
+from . import leafNode
 
 LOG_FORMAT: Final = "%(asctime)s [%(name)s:%(levelname)s] %(message)s"
 
@@ -20,19 +22,26 @@ def main(debug):
     logger = logging.getLogger(__name__)
 
     # 以下，メイン関数の処理
-    logger.debug("debug message")
-    logger.info("information message")
-    logger.warning("warning message")
-    logger.error("error message")
-    logger.critical("critical message")
+    # logger.debug("debug message")
+    # logger.info("information message")
+    # logger.warning("warning message")
+    # logger.error("error message")
+    # logger.critical("critical message")
 
-    # log_levelがWARNINGのため下記関数を呼んだ際のログは出力されない
-    sample_module.sample_func()
+    logger.setLevel("DEBUG")
+    logger.debug("DEBUG START!!")
+    Btree.logger.setLevel("DEBUG")
+    innerNode.logger.setLevel("DEBUG")
+    leafNode.logger.setLevel("DEBUG")
 
-    # モジュール単位でlog_levelを下げることでログが出力されるようになる
-    sample_module.logger.setLevel("DEBUG")
-    sample_instance = sample_module.SampleClass()
-    sample_instance.sample_func()
+    bt = Btree.Btree()
+    for i in range(1000):
+        key = randint(0, 10000)
+        value = randint(0, 10000)
+        bt.upsert(key, value)
+
+    bt.predecessor(-1)
+    bt.successor(10001)
 
 
 if __name__ == "__main__":

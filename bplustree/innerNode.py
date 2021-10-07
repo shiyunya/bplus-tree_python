@@ -1,7 +1,9 @@
-import constants
-import Node
+from . import constants
+from . import Node
 import bisect
+import logging
 
+logger = logging.getLogger(__name__)
 MAX = constants.MAX
 
 
@@ -23,6 +25,7 @@ class innerNode(Node.Node):
 
         if self.parent is None:
             # Node is root
+            logger.debug("B+-tree LEVEL UP!!")
             self.__init__()
 
             left = innerNode()
