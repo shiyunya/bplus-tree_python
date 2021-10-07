@@ -11,7 +11,7 @@ MAX = constants.MAX
 
 class Bplustree:
     def __init__(self, key=-float("inf")):
-        logger.debug("run constructor for B+-tree")
+        logger.debug("run constructor for B+tree")
         root = innerNode.innerNode()
         self.root = root
         leaf = leafNode.leafNode(key=key)

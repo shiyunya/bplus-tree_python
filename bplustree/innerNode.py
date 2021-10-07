@@ -25,7 +25,7 @@ class innerNode(Node.Node):
 
         if self.parent is None:
             # Node is root
-            logger.debug("B+-tree LEVEL UP!!")
+            logger.debug("B+tree LEVEL UP!!")
             self.__init__()
 
             left = innerNode()
