@@ -5,7 +5,7 @@ from random import randint
 from typing import Final
 import click
 
-from . import Btree
+from . import Bplustree
 from . import innerNode
 from . import leafNode
 
@@ -30,11 +30,11 @@ def main(debug):
 
     logger.setLevel("DEBUG")
     logger.debug("DEBUG START!!")
-    Btree.logger.setLevel("DEBUG")
+    Bplustree.logger.setLevel("DEBUG")
     innerNode.logger.setLevel("DEBUG")
     leafNode.logger.setLevel("DEBUG")
 
-    bt = Btree.Btree()
+    bt = Bplustree.Bplustree()
     for i in range(1000):
         key = randint(0, 10000)
         value = randint(0, 10000)

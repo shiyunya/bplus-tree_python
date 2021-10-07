@@ -75,13 +75,12 @@ pipenv sync
 ```bash
 python -m bplustree
 ```
-サンプルファイル
+サンプルプログラム
 ```bash
 python sample.py
 ```
 
-
-<!-- ## パッケージとしての利用（pipenv+GitHub経由）
+## パッケージとしての利用（pipenv+GitHub経由）
 
 `setup.py`を（最低限だが）記述してあるため，作成したパッケージを`pipenv`（厳密には`pip`）経由でインストールすることも可能．
 他のプロジェクトでこのパッケージを使用したい場合はこちらの手順を用いる．
@@ -89,17 +88,12 @@ python sample.py
 インストールは，下記のように[GitHubのリポジトリ名を指定する](https://pipenv-ja.readthedocs.io/ja/translate-ja/basics.html#a-note-about-vcs-dependencies)ことで行える．
 
 ```bash
-pipenv install -e git+ssh://git@github.com/dbgroup-nagoya-u/repository_name.git#egg=project_name
+pipenv install -e git+ssh://git@github.com/shiyunya/bplus-tree_python.git#egg=bplustree
 ```
 
 インストール後は，その他一般的なパッケージと同様に使用できる．
 
 ```python
-from project_name import <your_awesome_module>
+from bplustree.Bplustree import Bplustree
+bt = Bpulstree()
 ```
-
-### 使用例
-
-以下，パッケージとしての使用方法を記述する．
-
--->

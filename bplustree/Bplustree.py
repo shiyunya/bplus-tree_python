@@ -9,9 +9,9 @@ logger = logging.getLogger(__name__)
 MAX = constants.MAX
 
 
-class Btree:
+class Bplustree:
     def __init__(self, key=-float("inf")):
-        logger.debug("run constructor for B+-tree")
+        logger.debug("run constructor for B+tree")
         root = innerNode.innerNode()
         self.root = root
         leaf = leafNode.leafNode(key=key)
@@ -88,7 +88,7 @@ class Btree:
 
 
 def main():
-    bt = Btree()
+    bt = Bplustree()
 
     for i in range(1000):
         key = randint(0, 10000)
