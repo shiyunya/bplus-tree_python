@@ -1,4 +1,4 @@
-from bplustree.Btree import Btree
+from bplustree.Bplustree import Bplustree
 from random import randint
 
 
@@ -38,7 +38,7 @@ def main():
     TIMES = 10
     MINIMUM = 0
     MAXIMUM = 10000
-    bt = Btree()
+    bt = Bplustree()
 
     sample_upsert(bt, N, MINIMUM, MAXIMUM)
 

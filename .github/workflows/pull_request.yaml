@@ -2,10 +2,10 @@ name: CI_for_pull_request
 
 on:
   # Trigger the workflow on pull request,
-  # but only for the master branch
+  # but only for the main branch
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   format_lint_and_tests:
