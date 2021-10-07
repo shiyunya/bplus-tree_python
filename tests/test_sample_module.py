@@ -1,12 +1,26 @@
 # coding=utf-8
 
-from bplustree import sample_module
+from bplustree import Btree
 
 
-def test_sample_function():
-    assert sample_module.sample_func() == 1
+def test_predecessor_query():
+    bt = Btree.Btree()
+    bt.upsert(1)
+    bt.upsert(10)
+    assert bt.predecessor(5)[0] == 1
 
 
-def test_sample_class():
-    sample_class = sample_module.SampleClass()
-    assert sample_class.sample_func() == 1
+def test_successor_query():
+    bt = Btree.Btree()
+    bt.upsert(1)
+    bt.upsert(10)
+    assert bt.successor(5)[0] == 10
+
+
+def test_range_query():
+    bt = Btree.Btree()
+    bt.upsert(1)
+    bt.upsert(5)
+    bt.upsert(6)
+    bt.upsert(10)
+    assert len(bt.range(2, 9)) == 2
