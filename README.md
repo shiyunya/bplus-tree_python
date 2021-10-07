@@ -81,7 +81,7 @@ python sample.py
 ```
 
 
-## パッケージとしての利用（pipenv+GitHub経由）
+<!-- ## パッケージとしての利用（pipenv+GitHub経由）
 
 `setup.py`を（最低限だが）記述してあるため，作成したパッケージを`pipenv`（厳密には`pip`）経由でインストールすることも可能．
 他のプロジェクトでこのパッケージを使用したい場合はこちらの手順を用いる．
@@ -98,8 +98,8 @@ pipenv install -e git+ssh://git@github.com/dbgroup-nagoya-u/repository_name.git#
 from project_name import <your_awesome_module>
 ```
 
-<!--
 ### 使用例
 
 以下，パッケージとしての使用方法を記述する．
+
 -->
