@@ -4,7 +4,7 @@
 Pythonでの自分なりのB+tree.
 
 現状：upsert, delete, predecessor, successor, range queryは対応  
-(マージはしない予定)
+(ノードのマージは現状未対応)
 
 これを用いて[AtCoderの平衡木に相当するものが必要な問題](https://atcoder.jp/contests/abc217/tasks/abc217_d)は解けた．  
 [提出コード](https://atcoder.jp/contests/abc217/submissions/26388422)
@@ -97,3 +97,15 @@ pipenv install -e git+ssh://git@github.com/shiyunya/bplus-tree_python.git#egg=bp
 from bplustree.Bplustree import Bplustree
 bt = Bpulstree()
 ```
+
+## 注意
+- 視覚的にわかりやすいように，デフォルトのファンアウト数（bplustree/constants.pyの`MAX`）は**8**になってる
+    - ある程度大量のデータを扱うなら`MAX = 256`くらいにするとよさげ
+    - パッケージから用いる場合は以下のようにする
+    ```python
+    from bplustree import constants
+    constants.MAX = 256
+    from bplustree.Bplustree import Bplustree
+    bt = Bplustree()
+    ```
+- deleteはあるが，ノードのmergeは対応していないため，大量にdeleteがあるワークロードでは**バグる**
